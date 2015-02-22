@@ -78,6 +78,8 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+export SBT_OPTS="-XX:+CMSClassUnloadingEnabled -XX:PermSize=512M -XX:MaxPermSize=1024M"
+
 # some more ls aliases
 alias flushdns='sudo killall -HUP mDNSResponder'
 alias sbt='env JAVA_OPTS="-Xmx1024m" sbt'
