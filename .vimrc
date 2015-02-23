@@ -105,3 +105,8 @@ nnoremap <Leader>gc :Gcommit -a<CR>
 "no need relative in insert mode
 autocmd InsertEnter * :set number
 autocmd InsertLeave * :set relativenumber
+
+
+" remove trailing spaces on save
+autocmd BufWritePre *.c :%s/\s\+$//e
+autocmd BufWritePre *.h :%s/\s\+$//e
