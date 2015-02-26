@@ -8,7 +8,7 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle
-" required! 
+" required!
 Bundle 'gmarik/vundle'
 Bundle 'Raimondi/delimitMate'
 Bundle 'scrooloose/nerdtree'
@@ -20,6 +20,7 @@ Plugin 'bling/vim-airline'
 Plugin 'kien/ctrlp.vim'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-easytags'
+Plugin 'vim-scripts/a.vim'
 " Bundles end
 
 :let mapleader = ","
@@ -40,7 +41,7 @@ set splitbelow
 set splitright
 
 set autoread   "auto load from disk if changed
-set clipboard=unnamed 
+set clipboard=unnamed
 set noswapfile
 set nowritebackup
 set encoding=utf-8
@@ -52,9 +53,14 @@ set tabstop=4
 set expandtab
 set backspace=indent,eol,start
 set nowrap
-set cindent
 set smarttab
 set laststatus=2            " always show the status line
+
+
+set smartindent
+set cindent
+"Place cursor in a new line after opening {
+inoremap { {<CR>}<up><end><CR>
 
 set number
 set relativenumber
@@ -66,11 +72,11 @@ set incsearch
 
 inoremap <Up> <nop>
 inoremap <Down> <nop>
-inoremap <Left> <nop> 
-inoremap <Right> <nop> 
+inoremap <Left> <nop>
+inoremap <Right> <nop>
 inoremap jj <Esc>
 
-" CtrlP 
+" CtrlP
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_max_files=0

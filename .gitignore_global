@@ -20,6 +20,10 @@
 *.tar
 *.zip
 
+# Tags #
+# #####
+tags
+
 # Logs and databases #
 ######################
 *.log
