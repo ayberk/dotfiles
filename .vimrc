@@ -30,7 +30,7 @@ filetype plugin indent on
 
 if has("gui_running")
   if has("gui_gtk2")
-    set guifont=Inconsolata\ 12
+    set guifont=Inconsolata\ 13
   elseif has("gui_win32")
     set guifont=Consolas:h11:cANSI
   endif
@@ -117,3 +117,4 @@ autocmd InsertLeave * :set relativenumber
 " remove trailing spaces on save
 autocmd BufWritePre *.c :%s/\s\+$//e
 autocmd BufWritePre *.h :%s/\s\+$//e
+autocmd BufWritePre *.py :%s/\s\+$//e

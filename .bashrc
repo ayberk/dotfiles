@@ -83,9 +83,9 @@ export SBT_OPTS="-XX:+CMSClassUnloadingEnabled -XX:PermSize=512M -XX:MaxPermSize
 # some more ls aliases
 alias flushdns='sudo killall -HUP mDNSResponder'
 alias sbt='env JAVA_OPTS="-Xmx1024m" sbt'
+alias ls='ls -CF'
 alias ll='ls -alF'
 alias la='ls -A'
-alias l='ls -CF'
 alias home='cd ~'
 alias ws='cd ~/workspace'
 alias gp='git push origin master'
