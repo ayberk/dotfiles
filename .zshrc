@@ -57,6 +57,10 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/git/bin:/usr/texbin"
 export PATH="$PATH:/usr/local/smlnj/bin"
+export JAVA_HOME="$(/usr/libexec/java_home -v 1.7)"
+export PATH=$PATH:$HOME/bin:$JAVA_HOME
+export PATH="$HOME/nutch/runtime/local/bin:$PATH"
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
