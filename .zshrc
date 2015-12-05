@@ -57,10 +57,14 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/git/bin:/usr/texbin"
 export PATH="$PATH:/usr/local/smlnj/bin"
-export JAVA_HOME="$(/usr/libexec/java_home -v 1.7)"
+export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
 export PATH=$PATH:$HOME/bin:$JAVA_HOME
 export PATH="$HOME/nutch/runtime/local/bin:$PATH"
-
+export PATH="$HOME/anaconda/bin:$PATH"
+export JAVA_OPTIONS="-Dsolr.solr.home=/opt/solr/solr $JAVA_OPTIONS"
+export JETTY_HOME=/opt/solr
+export JETTY_USER=solr
+export JETTY_LOGS=/opt/solr/logs
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -80,3 +84,15 @@ export PATH="$HOME/nutch/runtime/local/bin:$PATH"
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 #
 fortune -s | cowsay | lolcat
+export PATH="/usr/local/bin:$PATH"
+
+# hadoop stuff
+alias hstart="/usr/local/Cellar/hadoop/2.7.1/sbin/start-dfs.sh;/usr/local/Cellar/hadoop/2.7.1/sbin/start-yarn.sh"
+alias hstop="/usr/local/Cellar/hadoop/2.7.1/sbin/stop-yarn.sh;/usr/local/Cellar/hadoop/2.7.1/sbin/stop-dfs.sh"
+
+hadoop-stream-function() {
+    hadoop jar /usr/local/Cellar/hadoop/2.7.1/libexec/share/hadoop/tools/lib/hadoop-streaming-2.7.1.jar -mapper $1 -reducer $2 -file $1 -file $2 -input $3 -output $4
+}
+
+#hadoop-stream mapper.py reducer.py inputFolder outputFolder
+alias hadoop-stream=hadoop-stream-function
