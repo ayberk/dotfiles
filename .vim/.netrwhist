@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/Users/ayberk/Documents/workspace/inf550-project'
+let g:netrw_dirhist_2='/Users/ayberk/exercism/java/etl/src/main'
+let g:netrw_dirhist_3='/Users/ayberk/exercism/java/etl/src/main/java'

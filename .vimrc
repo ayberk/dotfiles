@@ -1,6 +1,6 @@
 set nocompatible
 set showcmd
-filetype on
+filetype off
 colorscheme slate
 syntax on
 
@@ -9,7 +9,8 @@ call vundle#begin()
 
 " let Vundle manage Vundle
 " required!
-Plugin 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
+
 Plugin 'Raimondi/delimitMate'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
@@ -23,10 +24,10 @@ Plugin 'xolox/vim-easytags'
 Plugin 'vim-scripts/a.vim'
 Plugin 'bronson/vim-trailing-whitespace'
 " Bundles end
+call vundle#end()            " required
 
+filetype plugin indent on    " required
 :let mapleader = ","
-
-filetype plugin indent on
 
 if has("gui_running")
   if has("gui_gtk2")
@@ -60,8 +61,6 @@ set laststatus=2            " always show the status line
 
 set smartindent
 set cindent
-"Place cursor in a new line after opening {
-inoremap { {<CR>}<up><end><CR>
 
 set number
 set relativenumber
@@ -79,8 +78,9 @@ inoremap jj <Esc>
 
 " CtrlP
 let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_cmd = 'CtrlP .'
 let g:ctrlp_max_files=0
+let g:ctrlp_use_caching=0
 nnoremap <leader>t :CtrlPTag<cr>
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.o,*.out     " MacOSX/Linux
@@ -112,7 +112,6 @@ nnoremap <Leader>gc :Gcommit -a<CR>
 "no need relative in insert mode
 autocmd InsertEnter * :set number
 autocmd InsertLeave * :set relativenumber
-
 
 " remove trailing spaces on save
 autocmd BufWritePre *.c :%s/\s\+$//e
