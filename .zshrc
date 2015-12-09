@@ -10,7 +10,6 @@ ZSH_THEME="robbyrussell"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias vim="mvim"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -54,17 +53,9 @@ plugins=(git brew osx nyan)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+export PATH=“/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr:sbin:/sbin”
+export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 
-export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/git/bin:/usr/texbin"
-export PATH="$PATH:/usr/local/smlnj/bin"
-export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
-export PATH=$PATH:$HOME/bin:$JAVA_HOME
-export PATH="$HOME/nutch/runtime/local/bin:$PATH"
-export PATH="$HOME/anaconda/bin:$PATH"
-export JAVA_OPTIONS="-Dsolr.solr.home=/opt/solr/solr $JAVA_OPTIONS"
-export JETTY_HOME=/opt/solr
-export JETTY_USER=solr
-export JETTY_LOGS=/opt/solr/logs
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -84,7 +75,6 @@ export JETTY_LOGS=/opt/solr/logs
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 #
 fortune -s | cowsay | lolcat
-export PATH="/usr/local/bin:$PATH"
 
 # hadoop stuff
 alias hstart="/usr/local/Cellar/hadoop/2.7.1/sbin/start-dfs.sh;/usr/local/Cellar/hadoop/2.7.1/sbin/start-yarn.sh"
@@ -96,3 +86,7 @@ hadoop-stream-function() {
 
 #hadoop-stream mapper.py reducer.py inputFolder outputFolder
 alias hadoop-stream=hadoop-stream-function
+
+
+# make me 10x productive on shell
+set -o vi

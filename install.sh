@@ -25,4 +25,4 @@ for file in $files; do
 done
 
 source ~/.bashrc
-source ~/.vimrc
+source ~/.zshrc
