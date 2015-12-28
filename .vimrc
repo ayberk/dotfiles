@@ -1,4 +1,4 @@
-" :) 
+" :)
 set nocompatible
 set showcmd
 filetype off
@@ -21,7 +21,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'bling/vim-airline'
 Plugin 'kien/ctrlp.vim'
 Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-easytags'
+"Plugin 'xolox/vim-easytags'
 Plugin 'vim-scripts/a.vim'
 Plugin 'bronson/vim-trailing-whitespace'
 " Bundles end
@@ -50,7 +50,6 @@ set nowritebackup
 set encoding=utf-8
 set ruler       "show where i am
 set cc=80
-set smartindent
 set shiftwidth=4
 set tabstop=4
 set expandtab
@@ -59,12 +58,11 @@ set nowrap
 set smarttab
 set laststatus=2            " always show the status line
 
+"automatically change window's cwd to file's dir
+set autochdir
 
 set smartindent
 set cindent
-
-set number
-set relativenumber
 
 set ignorecase
 set smartcase
@@ -110,6 +108,8 @@ nnoremap <Leader>gf <C-W>h<C-W>czR
 nnoremap <Leader>gp :Git push<CR>
 nnoremap <Leader>gc :Gcommit -a<CR>
 
+set number
+set relativenumber
 "no need relative in insert mode
 autocmd InsertEnter * :set number
 autocmd InsertLeave * :set relativenumber
@@ -118,3 +118,4 @@ autocmd InsertLeave * :set relativenumber
 autocmd BufWritePre *.c :%s/\s\+$//e
 autocmd BufWritePre *.h :%s/\s\+$//e
 autocmd BufWritePre *.py :%s/\s\+$//e
+autocmd BufWritePre *.java :%s/\s\+$//e

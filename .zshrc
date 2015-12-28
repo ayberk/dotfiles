@@ -49,7 +49,11 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(nyan git github virtualenv pip python brew osx zsh-syntax-highlighting)
+plugins=(vi-mode history-substring-search nyan git github virtualenv pip python brew osx zsh-syntax-highlighting)
+
+# fix history search (vi mode breaks this)
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down]]]]
 
 # User configuration
 
@@ -85,6 +89,8 @@ source $ZSH/oh-my-zsh.sh
 
 fortune -s | cowsay | lolcat
 
+export JAVA_HOME=$(/usr/libexec/java_home)
+
 # hadoop stuff
 alias hstart="/usr/local/Cellar/hadoop/2.7.1/sbin/start-dfs.sh;/usr/local/Cellar/hadoop/2.7.1/sbin/start-yarn.sh"
 alias hstop="/usr/local/Cellar/hadoop/2.7.1/sbin/stop-yarn.sh;/usr/local/Cellar/hadoop/2.7.1/sbin/stop-dfs.sh"
@@ -96,6 +102,9 @@ hadoop-stream-function() {
 # hadoop-stream mapper.py reducer.py inputFolder outputFolder
 alias hadoop-stream=hadoop-stream-function
 
-
-# make me 10x productive on shell
-set -o vi
+# no love without venv
+export PIP_REQUIRE_VIRTUALENV=true
+# but sometimes love doesn't matter
+gpip() {
+    PIP_REQUIRE_VIRTUALENV="" pip "$@"
+}
