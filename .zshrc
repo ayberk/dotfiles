@@ -87,7 +87,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-fortune -s | cowsay | lolcat
+fortune -s -o | cowsay | lolcat
 
 export JAVA_HOME=$(/usr/libexec/java_home)
 
