@@ -60,6 +60,7 @@ bindkey '^[[B' history-substring-search-down]]]]
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
+setopt correct
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
