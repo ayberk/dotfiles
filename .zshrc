@@ -108,3 +108,7 @@ export PIP_REQUIRE_VIRTUALENV=true
 gpip() {
     PIP_REQUIRE_VIRTUALENV="" pip "$@"
 }
+
+export GOPATH=/Users/ayberk/Documents/workspace/goworkspace
+export GOBIN=$GOPATH/bin
+export PATH=$PATH:/usr/local/go/bin
