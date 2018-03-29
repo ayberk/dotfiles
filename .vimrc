@@ -25,6 +25,7 @@ Plugin 'xolox/vim-misc'
 Plugin 'vim-scripts/a.vim'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'rking/ag.vim'
+Plugin 'fatih/vim-go'
 " Bundles end
 call vundle#end()            " required
 

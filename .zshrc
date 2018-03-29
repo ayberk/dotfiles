@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/ayberk/.oh-my-zsh
+export ZSH=/Users/ayilmaz/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -49,7 +49,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(vi-mode history-substring-search nyan git github virtualenv pip python brew osx zsh-syntax-highlighting)
+plugins=(vi-mode history-substring-search nyan git github virtualenv pip python brew osx)
 
 # fix history search (vi mode breaks this)
 bindkey '^[[A' history-substring-search-up
@@ -60,8 +60,8 @@ bindkey '^[[B' history-substring-search-down]]]]
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
-setopt correct
 source $ZSH/oh-my-zsh.sh
+setopt correct
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -88,20 +88,11 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-fortune -s -o | cowsay | lolcat
+fortune -s | cowsay | lolcat
+
+PROMPT='${ret_status}%{$fg_bold[green]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%}%D{%m/%d} %T % %{$reset_color%}'
 
 export JAVA_HOME=$(/usr/libexec/java_home)
-
-# hadoop stuff
-alias hstart="/usr/local/Cellar/hadoop/2.7.1/sbin/start-dfs.sh;/usr/local/Cellar/hadoop/2.7.1/sbin/start-yarn.sh"
-alias hstop="/usr/local/Cellar/hadoop/2.7.1/sbin/stop-yarn.sh;/usr/local/Cellar/hadoop/2.7.1/sbin/stop-dfs.sh"
-
-hadoop-stream-function() {
-    hadoop jar /usr/local/Cellar/hadoop/2.7.1/libexec/share/hadoop/tools/lib/hadoop-streaming-2.7.1.jar -mapper $1 -reducer $2 -file $1 -file $2 -input $3 -output $4
-}
-
-# hadoop-stream mapper.py reducer.py inputFolder outputFolder
-alias hadoop-stream=hadoop-stream-function
 
 # no love without venv
 export PIP_REQUIRE_VIRTUALENV=true
@@ -109,3 +100,28 @@ export PIP_REQUIRE_VIRTUALENV=true
 gpip() {
     PIP_REQUIRE_VIRTUALENV="" pip "$@"
 }
+
+gpip3() {
+    PIP_REQUIRE_VIRTUALENV="" pip3 "$@"
+}
+
+alias dockerconfig="eval $(docker-machine env default)"
+alias dockerkillall="docker ps | awk '{ print $1 }' | xargs docker kill"
+alias kubeprod="kubectl --context=nisp-prod"
+alias kubewest="kubectl --context=nisp-prod-west"
+alias kubelab="kubectl --context=nisp-lab"
+alias kubeoemv2west="kubectl --context=oemv2-usw2"
+alias kubeoemv2east="kubectl --context=oemv2-use1"
+alias kubehub="kubectl --context=hub"
+alias kubehubv2="kubectl --context=hubv2"
+
+export GOPATH=/Users/ayilmaz/workspace/goworkspace
+export PATH=$PATH:/usr/local/go/bin
+export GOBIN=$GOPATH/bin
+export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
+
+export EDITOR=vim
+
+eval "$(direnv hook zsh)"
+export PATH="/usr/local/sbin:$PATH"
+export PATH=$(brew --prefix)/opt/python/libexec/bin":$PATH"
