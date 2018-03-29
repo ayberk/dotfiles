@@ -19,11 +19,12 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'bling/vim-airline'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'xolox/vim-misc'
 "Plugin 'xolox/vim-easytags'
 Plugin 'vim-scripts/a.vim'
 Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'fatih/vim-go'
 Plugin 'rking/ag.vim'
 Plugin 'fatih/vim-go'
 " Bundles end
@@ -82,7 +83,7 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP .'
 let g:ctrlp_max_files=0
 let g:ctrlp_use_caching=0
-nnoremap <leader>t :CtrlPTag<cr>
+nnoremap <leader>t :CtrlP<cr>
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.o,*.out     " MacOSX/Linux
 
@@ -121,3 +122,10 @@ autocmd BufWritePre *.c :%s/\s\+$//e
 autocmd BufWritePre *.h :%s/\s\+$//e
 autocmd BufWritePre *.py :%s/\s\+$//e
 autocmd BufWritePre *.java :%s/\s\+$//e
+
+" golang syntax
+let g:go_highlight_structs = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
