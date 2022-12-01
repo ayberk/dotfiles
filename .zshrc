@@ -29,6 +29,8 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 setopt correct
+# Disable wildcard matching
+setopt nonomatch
 
 setopt prompt_subst  # enable command substitution (and other expansions) in PROMPT
 if [ -n "$REMOTE_SESSION" ]; then
@@ -62,6 +64,7 @@ alias tmux=tmx2
 alias k=kubectl
 alias cat=bat
 alias grep="rg -S"
+alias exa="exa -al"
 
 alias glg='git log --graph --all -n 20 --pretty=format:"%Cblue%h%Creset [%Cgreen%ar%Creset] [%Cred%an%Creset] %s%C(yellow)%d%Creset"'
 alias rpi='tmx2 -CC new -A -s rpi'
@@ -88,4 +91,4 @@ fi;
 }
 
 alias flush_dns="sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder && echo DNS flushed."
-alias exa="exa -al"
+
