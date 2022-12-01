@@ -1,127 +1,91 @@
-# Path to your oh-my-zsh installation.
-export ZSH=/Users/ayilmaz/.oh-my-zsh
+export PATH=/usr/local/bin:$HOME/bin:$PATH
+export ZSH=$HOME/.oh-my-zsh
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+# https://github.com/sbugzu/gruvbox-zsh
+ZSH_THEME="gruvbox"
+SOLARIZED_THEME="dark"
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+    REMOTE_SESSION=true
+fi
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(vi-mode history-substring-search nyan git github virtualenv pip python brew osx)
-
-# fix history search (vi mode breaks this)
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down]]]]
-
-# User configuration
-
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-# export MANPATH="/usr/local/man:$MANPATH"
+plugins=(
+    vi-mode
+    git
+    github
+    virtualenv
+    pip
+    python
+    brew
+    macos
+    history-substring-search
+    sublime
+    zsh-autosuggestions
+    extract
+)
 
 source $ZSH/oh-my-zsh.sh
 setopt correct
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+setopt prompt_subst  # enable command substitution (and other expansions) in PROMPT
+if [ -n "$REMOTE_SESSION" ]; then
+    local hostname="%{$fg_bold[black]%}%m"
+    PROMPT=' %B%F{green}[$(TZ='America/Los_Angeles' date +%H:%M)]%f%b ${hostname} ${ret_status}%{$fg_bold[green]%}%p %{$fg[cyan]%}%(5~|%-1~/…/%3~|%4~) %{$reset_color%}'
+else
+    PROMPT=' %B%F{green}[$(TZ='America/Los_Angeles' date +%H:%M)]%f%b $fg_bold[yellow]%~ ${ret_status}%{$fg_bold[cyan]%}%p%{$reset_color%}'
+    #PROMPT='${ret_status}%{$fg_bold[green]%}%p %{$fg[cyan]%}%(5~|%-1~/…/%3~|%4~) %{$reset_color%}'
+fi
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+# fix history search (vi mode breaks this)
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey '^[[Z' reverse-menu-complete
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
 
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+if command -v brew &> /dev/null  && [[ ! -f ~/.fzf.zsh ]]; then 
+    $(brew --prefix)/opt/fzf/install
+fi
+source ~/.fzf.zsh
 
-fortune -s | cowsay | lolcat
+if [ -f ~/.google.zsh ]; then
+    source ~/.google.zsh
+fi
 
-PROMPT='${ret_status}%{$fg_bold[green]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%}%D{%m/%d} %T % %{$reset_color%}'
+alias tmux=tmx2
+alias k=kubectl
+alias cat=bat
+alias grep="rg -S"
 
-export JAVA_HOME=$(/usr/libexec/java_home)
+alias glg='git log --graph --all -n 20 --pretty=format:"%Cblue%h%Creset [%Cgreen%ar%Creset] [%Cred%an%Creset] %s%C(yellow)%d%Creset"'
+alias rpi='tmx2 -CC new -A -s rpi'
 
-# no love without venv
-export PIP_REQUIRE_VIRTUALENV=true
-# but sometimes love doesn't matter
-gpip() {
-    PIP_REQUIRE_VIRTUALENV="" pip "$@"
-}
-
-gpip3() {
-    PIP_REQUIRE_VIRTUALENV="" pip3 "$@"
-}
-
-alias dockerconfig="eval $(docker-machine env default)"
-alias dockerkillall="docker ps | awk '{ print $1 }' | xargs docker kill"
-alias kubeprod="kubectl --context=nisp-prod"
-alias kubewest="kubectl --context=nisp-prod-west"
-alias kubelab="kubectl --context=nisp-lab"
-alias kubeoemv2west="kubectl --context=oemv2-usw2"
-alias kubeoemv2east="kubectl --context=oemv2-use1"
-alias kubehub="kubectl --context=hub"
-alias kubehubv2="kubectl --context=hubv2"
-
-export GOPATH=/Users/ayilmaz/workspace/goworkspace
-export PATH=$PATH:/usr/local/go/bin
-export GOBIN=$GOPATH/bin
-export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
-
+export HISTCONTROL=ignoreboth
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+export PATH="/opt/homebrew/bin:${PATH}"
 export EDITOR=vim
 
-eval "$(direnv hook zsh)"
-export PATH="/usr/local/sbin:$PATH"
-export PATH=$(brew --prefix)/opt/python/libexec/bin":$PATH"
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/ayberk/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/ayberk/google-cloud-sdk/path.zsh.inc'; fi
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/ayberk/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/ayberk/google-cloud-sdk/completion.zsh.inc'; fi
+
+
+function update_dns () {
+if [[ `networksetup -getdnsservers Wi-Fi | grep 10.0.0.41` != "10.0.0.41" ]]; then
+    echo "Updating to Adguard DNS."
+    networksetup -setdnsservers Wi-Fi 10.0.0.41 2601:600:9780:5890::ce7f fd1c:8082:fa7b:487c:125a:d00d:2687:b88c 2601:600:9780:5890:44aa:2968:5d50:3eb0 
+else
+    echo "Setting to Google and Cloudflare DNS."
+    networksetup -setdnsservers Wi-Fi 1.1.1.1 8.8.8.8
+fi;
+}
+
+alias flush_dns="sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder && echo DNS flushed."
+alias exa="exa -al"

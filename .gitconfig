@@ -1,21 +1,13 @@
 [user]
 	name = Ayberk Yilmaz
-	email = ayilmaz@hiya.com
+	 email = 309940+ayberk@users.noreply.github.com
 [core]
 	excludesfile = /Users/ayberk/.gitignore_global
 	editor = /usr/bin/vim
 	autocrlf = input
 	pager = diff-so-fancy | less --tabs=4 -RFX
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
 [push]
 	default = matching
-[gui]
-	recentrepo = /Users/ayilmaz/workspace/scala-foundation
 [color]
 	ui = true
 [color "diff-highlight"]
