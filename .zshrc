@@ -81,14 +81,15 @@ if [ -f '/Users/ayberk/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/ay
 
 
 function update_dns () {
-if [[ `networksetup -getdnsservers Wi-Fi | grep 10.0.0.41` != "10.0.0.41" ]]; then
+SSID=`/System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport -I | awk -F: '/ SSID/{print $2}'`
+HOME_WIFI=`echo $SSID | grep -i helloworld`
+if [[ -n $HOME_WIFI ]]; then
     echo "Updating to Adguard DNS."
-    networksetup -setdnsservers Wi-Fi 10.0.0.41 2601:600:9780:5890::ce7f fd1c:8082:fa7b:487c:125a:d00d:2687:b88c 2601:600:9780:5890:44aa:2968:5d50:3eb0 
+    networksetup -setdnsservers Wi-Fi 10.0.0.41 2601:600:9780:5890::ce7f fd1c:8082:fa7b:487c:125a:d00d:2687:b88c 2601:600:9780:5890:44aa:2968:5d50:3eb0
 else
-    echo "Setting to Google and Cloudflare DNS."
+    echo "Updating to Google and Cloudflare DNS."
     networksetup -setdnsservers Wi-Fi 1.1.1.1 8.8.8.8
 fi;
 }
 
 alias flush_dns="sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder && echo DNS flushed."
-
