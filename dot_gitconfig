@@ -1,0 +1,8 @@
+[oh-my-zsh]
+	hide-status = 1
+[user]
+    email = 309940+ayberk@users.noreply.github.com
+[pager]
+	diff = false
+[core]
+	pager = 
