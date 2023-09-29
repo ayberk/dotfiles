@@ -1,0 +1,105 @@
+set nocompatible
+
+set number
+set showcmd
+filetype off
+syntax on
+
+" Plugins
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-speeddating'
+Plugin 'tpope/vim-commentary'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Raimondi/delimitMate'
+Plugin 'mbbill/undotree'
+Plugin 'elzr/vim-json'
+Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plugin 'junegunn/fzf.vim'
+
+Plugin 'morhetz/gruvbox'
+call vundle#end()
+filetype plugin indent on    " required
+
+colorscheme gruvbox
+set background=dark
+
+set splitbelow
+set splitright
+
+:let mapleader = ","
+
+set autoread   "auto load from disk if changed
+set clipboard=unnamed
+set noswapfile
+set nowritebackup
+set encoding=utf-8
+set ruler
+set cc=100
+set shiftwidth=4
+set tabstop=4
+set expandtab
+set backspace=indent,eol,start
+set nowrap
+set smarttab
+set laststatus=2            " always show the status line
+
+set smartindent
+set cindent
+
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch
+
+set relativenumber
+autocmd InsertEnter * :set number
+autocmd InsertLeave * :set relativenumber
+
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+inoremap jj <Esc>
+map <leader>D :put =strftime('## %F')<CR>
+
+nnoremap <leader>ut :UndotreeToggle
+
+" Nerdtree
+nmap <leader>nd :NERDTreeToggle<CR>
+nmap <leader>nf :NERDTreeFind<CR>
+
+" Git/fugitive shortcuts
+nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gd :Gdiff<CR>
+nnoremap <Leader>gp :Git push<CR>
+
+" Synstastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+" EO Synstastic
+
+" remove trailing spaces on save
+autocmd BufWritePre *.c :%s/\s\+$//e
+autocmd BufWritePre *.h :%s/\s\+$//e
+autocmd BufWritePre *.py :%s/\s\+$//e
+autocmd BufWritePre *.java :%s/\s\+$//e
+
+" unlimited undo history
+set undofile
+set undodir=~/.vim/undodir
+
