@@ -94,3 +94,7 @@ if [ -f '/Users/ayberk/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . 
 export GOPATH=$HOME/go
 export BAT_THEME="Monokai Extended Bright"
 export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin/":$PATH
+export JAVA_HOME=$HOME/OpenJDK/jdk-17.0.9.jdk/Contents/Home
+export PATH=$JAVA_HOME/bin:$PATH
+export PATH="/Users/ayberk/Library/Application Support/Coursier/bin":$PATH
+export PATH="/opt/homebrew/bin":$PATH
