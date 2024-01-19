@@ -6,3 +6,5 @@
 	diff = false
 [core]
 	pager = 
+[init]
+    defaultBranch = main
