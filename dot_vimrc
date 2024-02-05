@@ -40,7 +40,7 @@ set splitright
 :let mapleader = ","
 
 set autoread   "auto load from disk if changed
-set clipboard=unnamed
+set clipboard+=unnamed
 set noswapfile
 set nowritebackup
 set encoding=utf-8
