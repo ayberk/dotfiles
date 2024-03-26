@@ -94,7 +94,6 @@ if [ -f '/Users/ayberk/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/User
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/ayberk/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/ayberk/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
-[[ -e "/Users/ayberk/mdproxy/data/mdproxy_zshrc" ]] && source "/Users/ayberk/mdproxy/data/mdproxy_zshrc" # MDPROXY-ZSHRC
 
 export GOPATH=$HOME/go
 export BAT_THEME="Monokai Extended Bright"
@@ -105,3 +104,4 @@ export PATH="/Users/ayberk/Library/Application Support/Coursier/bin":$PATH
 export PATH="/opt/homebrew/bin":$PATH
 
 
+[[ -e "/Users/ayberk/mdproxy/data/mdproxy_zshrc" ]] && source "/Users/ayberk/mdproxy/data/mdproxy_zshrc" # MDPROXY-ZSHRC

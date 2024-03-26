@@ -1,5 +1,6 @@
 function update_dns () {
-    SSID=`/System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport -I | awk -F: '/ SSID/{print $2}'`
+    PSS=`security find-generic-password -w -s 'pswd' -a 'ayberk'`
+    SSID=`echo $PSS | sudo -S  wdutil info 2>&1 | grep "\bSSID"`
     HOME_WIFI=`echo $SSID | grep -i helloworld`
     GOOGLE_WIFI=`echo $SSID | grep -i google`
     DNS=""
