@@ -58,7 +58,8 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 if command -v brew &> /dev/null  && [[ ! -f ~/.fzf.zsh ]]; then 
     $(brew --prefix)/opt/fzf/install
 fi
-source ~/.fzf.zsh
+
+source <(fzf --zsh)
 
 if [ -f ~/.google.zsh ]; then
     source ~/.google.zsh
@@ -72,8 +73,6 @@ alias find=fd
 alias t="todo.sh -t -c"
 alias find=fd
 alias notes="tmux new -A -s notes"
-alias venv_create="python3 -m venv .venv"
-alias venv_activate="source .venv/bin/activate"
 
 alias glg='git log --graph --all -n 20 --pretty=format:"%Cblue%h%Creset [%Cgreen%ar%Creset] [%Cred%an%Creset] %s%C(yellow)%d%Creset"'
 alias rpi='tmx2 -CC new -A -s rpi'
@@ -103,5 +102,8 @@ export PATH=$JAVA_HOME/bin:$PATH
 export PATH="/Users/ayberk/Library/Application Support/Coursier/bin":$PATH
 export PATH="/opt/homebrew/bin":$PATH
 
-
-[[ -e "/Users/ayberk/mdproxy/data/mdproxy_zshrc" ]] && source "/Users/ayberk/mdproxy/data/mdproxy_zshrc" # MDPROXY-ZSHRC
+# stupid python
+alias python=python3
+alias pip=pip3
+alias venv_create="python3 -m venv .venv"
+alias venv_activate="source .venv/bin/activate"
