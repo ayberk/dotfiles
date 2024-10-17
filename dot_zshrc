@@ -29,7 +29,6 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 setopt correct
-
 # Disable wildcard matching - https://unix.stackexchange.com/a/130967
 setopt nonomatch
 
@@ -42,7 +41,7 @@ if [ -n "$REMOTE_SESSION" ]; then
     local hostname="%{$fg_bold[black]%}%m"
     PROMPT=' $(virtualenv_prompt_info) %B%F{green}[%D{%m/%d} $(TZ='America/Los_Angeles' date +%H:%M)]%f%b ${hostname} ${ret_status}%{$fg_bold[green]%}%p %{$fg[cyan]%}%(5~|%-1~/…/%3~|%4~) %{$reset_color%}'
 else
-    PROMPT=' %B%F{green}[%D{%m/%d} $(TZ='America/Los_Angeles' date +%H:%M)] %~%f%b ${ret_status}%{$fg_bold[cyan]%}%p%B%F$(virtualenv_info)%f%b%{$reset_coor%}'
+    PROMPT=' %B%F{green}[%D{%m/%d} $(TZ='America/Los_Angeles' date +%H:%M)] %10<..<%~%<<%f%b ${ret_status}%{$fg_bold[cyan]%}%p%B%F$(virtualenv_info)%f%b%{$reset_color%}'
 fi
 
 # fix history search (vi mode breaks this)
@@ -55,14 +54,22 @@ bindkey -M vicmd 'j' history-substring-search-down
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-if command -v brew &> /dev/null  && [[ ! -f ~/.fzf.zsh ]]; then 
+if command -v brew &> /dev/null && [[ ! -f ~/.fzf.zsh ]]; then 
     $(brew --prefix)/opt/fzf/install
 fi
-
 source <(fzf --zsh)
 
 if [ -f ~/.google.zsh ]; then
     source ~/.google.zsh
+fi
+
+if command -v lsd 2>&1 >/dev/null
+then
+    alias ls='lsd'
+    alias l='ls -l'
+    alias la='ls -a'
+    alias lla='ls -la'
+    alias lt='ls --tree'
 fi
 
 alias tmux=tmx2
@@ -72,7 +79,6 @@ alias grep="rg -S"
 alias find=fd
 alias t="todo.sh -t -c"
 alias find=fd
-alias notes="tmux new -A -s notes"
 
 alias glg='git log --graph --all -n 20 --pretty=format:"%Cblue%h%Creset [%Cgreen%ar%Creset] [%Cred%an%Creset] %s%C(yellow)%d%Creset"'
 alias rpi='tmx2 -CC new -A -s rpi'
@@ -107,3 +113,4 @@ alias python=python3
 alias pip=pip3
 alias venv_create="python3 -m venv .venv"
 alias venv_activate="source .venv/bin/activate"
+
