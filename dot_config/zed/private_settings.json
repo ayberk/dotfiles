@@ -1,0 +1,108 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run the `open default settings` command
+// from the command palette or from `Zed` application menu.
+{
+  "indent_guides": {
+    "enabled": true,
+    "coloring": "indent_aware"
+  },
+  "wrap_guides": [100],
+  "tab_size": 2,
+  "lsp": {
+    "ruff": {
+      "initialization_options": {
+        "settings": {
+          "lineLength": 100,
+          "showSyntaxErrors": true,
+          "lint": {
+            "select": ["ALL"],
+            // https://docs.astral.sh/ruff/rules/#flake8-2020-ytt
+            "ignore": ["E741", "D", "ANN", "INP001"]
+          }
+        }
+      }
+    }
+  },
+  "languages": {
+    "Python": {
+      "language_servers": ["ruff"],
+      "format_on_save": "on",
+      "formatter": [
+        {
+          "code_actions": {
+            "source.organizeImports.ruff": true,
+            "source.fixAll.ruff": true
+          }
+        },
+        {
+          "language_server": {
+            "name": "ruff"
+          }
+        }
+      ]
+    }
+  },
+  "vim": {
+    "use_system_clipboard": "always",
+    // Lets `f` and `t` motions extend across multiple lines
+    "use_multiline_find": true
+  },
+  // disable cursor blink
+  "cursor_blink": false,
+  // use relative line numbers
+  "relative_line_numbers": true,
+  // hide the scroll bar
+  "scrollbar": {
+    "show": "never"
+  },
+  // allow cursor to reach edges of screen
+  "vertical_scroll_margin": 0,
+  "assistant": {
+    "default_model": {
+      "provider": "openai",
+      "model": "gpt-4o"
+    },
+    "version": "2",
+    "provider": {
+      "name": "openai",
+      "default_model": "gpt-4o"
+    }
+  },
+  "base_keymap": "VSCode",
+  "theme": "Zedokai",
+  "vim_mode": true,
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "ui_font_size": 14,
+  "buffer_font_size": 14,
+  "file_scan_exclusions": [
+    "**/.git",
+    "**/.svn",
+    "**/.hg",
+    "**/CVS",
+    "**/.DS_Store",
+    "**/Thumbs.db",
+    "**/.classpath",
+    "**/.settings",
+    // above is default from Zed
+    "**/out",
+    "**/dist",
+    "**/.husky",
+    "**/.turbo",
+    "**/.vscode-test",
+    "**/.vscode",
+    "**/.next",
+    "**/.storybook",
+    "**/.tap",
+    "**/.nyc_output",
+    "**/report",
+    "**/node_modules"
+  ]
+}
