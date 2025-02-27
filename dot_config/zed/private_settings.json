@@ -7,6 +7,10 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+    "features": {
+        "inline_completion_provider": "none"
+    },
+    "buffer_font_family": "Iosevka",
     "indent_guides": {
         "enabled": true,
         "coloring": "indent_aware"
@@ -54,6 +58,9 @@
                     }
                 }
             ]
+        },
+        "HTML": {
+            "format_on_save": "off"
         }
     },
     "vim": {
@@ -73,8 +80,8 @@
     "vertical_scroll_margin": 0,
     "assistant": {
         "default_model": {
-            "provider": "openai",
-            "model": "gpt-4o"
+            "provider": "zed.dev",
+            "model": "claude-3-5-sonnet-latest"
         },
         "version": "2",
         "provider": {

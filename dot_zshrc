@@ -51,6 +51,7 @@ bindkey '^[[Z' reverse-menu-complete
 
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
+bindkey -M viins 'jj' vi-cmd-mode
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 

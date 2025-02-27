@@ -13,9 +13,37 @@
 [interactive]
     diffFilter = delta --color-only
 [diff]
-    noprefix = true
+    algorithm = histogram
+    colorMoved = plain
+    renames = true
+    srcPrefix = "SRC/"
+    dstPrefix = "DST/"
 [alias]
     # Difftastic aliases, so `git dlog` is `git log` with difftastic and so on.
     dlog = -c diff.external=difft log --ext-diff
     dshow = -c diff.external=difft show --ext-diff
     ddiff = -c diff.external=difft diff
+[column]
+    ui = auto
+[branch]
+    sort = -committerdate
+[tag]
+    sort = version:refname
+[push]
+    default = simple
+    autoSetupRemote = true
+    followTags = true
+[fetch]
+    prune = true
+    pruneTags = true
+    all = true
+[help]
+    autocorrect = prompt
+[commit]
+    verbose = true
+[merge]
+    conflictstyle = zdiff3
+[rebase]
+    autoSquash = true
+    autoStash = true
+    updateRefs = true
